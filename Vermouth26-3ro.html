@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vermouth 26</title>
+
+<style>
+/* ====== FONDO (CAMBIAR ACA) ====== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url("Imagenes/Vermouth26.png"); /* <-- CAMBIAR */
+  background-size: cover;
+  background-position: center;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+/* ====== FRASE ====== */
+.frase {
+  font-size: 2rem;
+  margin: 40px 20px;
+}
+
+/* ====== TITULOS ====== */
+h1 {
+  margin-top: 20px;
+}
+
+h2 {
+  margin-top: 50px;
+  font-size: 1.5rem;
+}
+
+/* ====== CARROUSEL ====== */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  margin: 0 10px;
+  border-radius: 15px;
+  opacity: 0.5;
+  transform: scale(0.8);
+  transition: all 0.5s;
+}
+
+/* Imagen central */
+.carousel img.active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ====== BOTONES ====== */
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* ====== PELIS ====== */
+.pelis {
+  margin-top: 20px;
+}
+
+.pelis a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.pelis a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ====== FRASE (EDITAR ACA) ====== -->
+<div class="frase">
+  ESCRIBIR FRASE ACA
+</div>
+
+<!-- ====== TITULO ====== -->
+<h1>Outfit inspo</h1>
+
+<!-- ====== CARROUSEL ====== -->
+<div class="carousel">
+  <button class="prev">&#8592;</button>
+
+  <div class="carousel-track" id="track">
+    <!-- CAMBIAR IMAGENES ACA -->
+    <img src="Imagenes/Vermouth26-1ro.png">
+    <img src="Imagenes/Vermouth26-2do.png">
+    <img src="Imagenes/Vermouth26-3ro.png">
+    <img src="Imagenes/Vermouth26-4to.png">
+    <img src="Imagenes/Vermouth26-6to.png">
+    <img src="Imagenes/Vermouth26.png">
+  </div>
+
+  <button class="next">&#8594;</button>
+</div>
+
+<!-- ====== PELIS ====== -->
+<h2>Pelis inspo</h2>
+
+<div class="pelis">
+  <!-- CAMBIAR NOMBRES Y LINKS ACA -->
+  <a href="LINK1">Nombre de peli 1</a>
+  <a href="LINK2">Nombre de peli 2</a>
+  <a href="LINK3">Nombre de peli 3</a>
+</div>
+
+<script>
+const track = document.getElementById("track");
+const images = track.children;
+let index = 0;
+
+function updateCarousel() {
+  for (let i = 0; i < images.length; i++) {
+    images[i].classList.remove("active");
+  }
+
+  images[index].classList.add("active");
+
+  const offset = -index * 220 + (track.parentElement.offsetWidth / 2 - 110);
+  track.style.transform = `translateX(${offset}px)`;
+}
+
+document.querySelector(".next").onclick = () => {
+  index = (index + 1) % images.length; // 🔁 circular
+  updateCarousel();
+};
+
+document.querySelector(".prev").onclick = () => {
+  index = (index - 1 + images.length) % images.length; // 🔁 circular
+  updateCarousel();
+};
+
+updateCarousel();
+</script>
+
+</body>
+</html>

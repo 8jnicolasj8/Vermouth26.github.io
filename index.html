@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Vermouth26</title>
+    <style>
+        /* ========================================
+           CONFIGURACIÓN PERSONALIZABLE
+        ======================================== */
+        
+        /* CAMBIA ESTA URL POR TU IMAGEN DE FONDO */
+        :root {
+            --bg-image: url('Imagenes/Vermouth26.png') center/cover no-repeat fixed;
+        }
+
+        /* ========================================
+           ESTILOS GENERALES
+        ======================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            background: var(--bg-image);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        /* ========================================
+           GRILLA DE IMÁGENES
+        ======================================== */
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto 1fr;
+            gap: 30px;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .grid-item {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* ========================================
+           EFECTOS HOVER
+        ======================================== */
+        
+        .grid-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .grid-item:hover::before {
+            opacity: 1;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* ========================================
+           IMAGEN CENTRAL (5ta imagen)
+        ======================================== */
+        
+        .center-image {
+            grid-column: 1 / -1;
+            max-width: 500px;
+        }
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+        
+        @media (max-width: 768px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .center-image {
+                grid-column: 1;
+                max-width: 350px;
+            }
+            
+            .grid-item {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 10px;
+            }
+            
+            .grid-item {
+                max-width: 280px;
+            }
+        }
+
+        /* ========================================
+           ANIMACIÓN DE ENTRADA
+        ======================================== */
+        
+        .grid-item {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .grid-item:nth-child(1) { animation-delay: 0.1s; }
+        .grid-item:nth-child(2) { animation-delay: 0.2s; }
+        .grid-item:nth-child(3) { animation-delay: 0.3s; }
+        .grid-item:nth-child(4) { animation-delay: 0.4s; }
+        .grid-item:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-grid">
+            <!-- ========================================
+                 CAMBIA LAS URLs DE LAS IMÁGENES AQUÍ
+            ======================================== -->
+            
+            <!-- Imagen 1 → Vermouth26-1ro.html -->
+            <a href="Vermouth26-1ro.html" class="grid-item">
+                <img src="Imagenes/Vermouth26-1ro.png" alt="Imagen 1">
+            </a>
+
+            <!-- Imagen 2 → Vermouth26-2do.html -->
+            <a href="Vermouth26-2do.html" class="grid-item">
+                <img src="Imagenes/Vermouth26-2do.png" alt="Imagen 2">
+            </a>
+
+            <!-- Imagen 3 → Vermouth26-3ro.html -->
+            <a href="Vermouth26-3ro.html" class="grid-item">
+                <img src="Imagenes/Vermouth26-3ro.png" alt="Imagen 3">
+            </a>
+
+            <!-- Imagen 4 → Vermouth26-4to.html -->
+            <a href="Vermouth26-4to.html" class="grid-item">
+                <img src="Imagenes/Vermouth26-4to.png" alt="Imagen 4">
+            </a>
+
+            <!-- Imagen 5 → Vermouth26-6to.html (CENTRADA) -->
+            <a href="Vermouth26-6to.html" class="grid-item center-image">
+                <img src="Imagenes/Vermouth26-6to.png" alt="Imagen 5">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
